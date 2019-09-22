@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+
+.bg {
+
+  background-image: url("bgimage.jpg");
+
+
+  height: 81%;
+  width: 75%
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+input[type=text], input[type=password] {
+  width: 90%;
+  padding: 20px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #333;
+  box-sizing: border-box;
+}
+
+
+button {
+  background-color: #000000;
+  color: white;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #000000;
+}
+
+
+.imgcontainer {
+  text-align: center;
+  margin: 20px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 60%;
+  border-radius: 60%;
+}
+
+.container {
+  padding: 20px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 12px;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #000000;
+  background-color: rgba(0,0,0,0.8);
+  padding-top: 30px;
+}
+
+
+.modal-content {
+  background-color: #fd5e53;
+  margin: 5% auto 15% auto;
+  border: 1px solid #888;
+  width: 30%;
+}
+
+
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  cursor: pointer;
+}
+.popo {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
+  background-color: rgba(0,0,0,0.7);
+}
+
+.pop{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="bg"></div>
+
+
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">GET STARTED</button>
+
+<div id="id01" class="modal">
+
+  <form class="modal-content animate" action="/action_page.php" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" id="email" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" id="password" required>
+
+      <button type="submit" class="id2" id="id2">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+
+
+      <div class="popo" id="popo">
+      <div class="pop" id="pop">
+      </div>
+      </div>
+</div>
+</form>
+ <script>
+var modal = document.getElementById('id01');
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+var b=document.getElementById('id2');
+var c=document.getElementById('pop');
+b.onclick=function(event){
+  event.preventDefault();
+  if((document.getElementById('email').value.match(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
+  &&document.getElementById('password').value.length>=4))
+  {
+    c.innerHTML="";
+    var d=document.createTextNode("Hi!! "+ document.getElementById('email').value);
+    var e = document.createElement("button");
+    e.appendChild(document.createTextNode("OK"));
+    e.setAttribute("id","popbttn");
+    e.setAttribute("class","popbttn");
+    c.appendChild(d);
+    c.appendChild(document.createElement("br"));
+    c.appendChild(document.createElement("div").appendChild(e));
+    document.getElementById('email').value="";
+    document.getElementById('password').value="";
+    document.getElementById('popo').style.display = "block";
+    document.getElementById("popbttn").addEventListener("click", function(event){
+      event.preventDefault();
+      document.getElementById('popo').style.display='none'
+    });
+  }
+  else {
+    document.getElementById('email').value="";
+    document.getElementById('password').value="";
+    c.innerHTML="";
+    var d=document.createTextNode("Invalid Username or Password");
+    var e = document.createElement("button");
+    e.appendChild(document.createTextNode("OK"));
+    e.setAttribute("id","popbttn");
+    e.setAttribute("class","popbttn");
+    c.appendChild(d);
+    c.appendChild(document.createElement("br"));
+    c.appendChild(document.createElement("div").appendChild(e));
+    document.getElementById('popo').style.display = "block";
+    document.getElementById("popbttn").addEventListener("click", function(event){
+      event.preventDefault();
+      document.getElementById('popo').style.display='none'
+    });
+  }
+}
+</script>
+</body>
+</html>
