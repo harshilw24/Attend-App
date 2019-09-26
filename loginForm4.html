@@ -10,7 +10,7 @@ body, html {
 }
 
 
-.bg {
+.bg{
 
   background-image: url("bgimage.jpg");
 
@@ -183,7 +183,7 @@ span.psw {
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" id="password" required>
 
-      <button type="submit" class="id2" id="id2">Login</button>
+      <button type="submit" class="id2" onclick="$routeProvider" id="id2">Login</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
@@ -211,25 +211,33 @@ var b=document.getElementById('id2');
 var c=document.getElementById('pop');
 b.onclick=function(event){
   event.preventDefault();
-  if((document.getElementById('email').value.match(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
-  &&document.getElementById('password').value.length>=4))
+  console.log(document.getElementById('password').value);
+  if(document.getElementById('email').value=="wadhwaniharshil12@gmail.com"&&
+document.getElementById('password').value=="hello")
   {
-    c.innerHTML="";
-    var d=document.createTextNode("Hi!! "+ document.getElementById('email').value);
-    var e = document.createElement("button");
-    e.appendChild(document.createTextNode("OK"));
-    e.setAttribute("id","popbttn");
-    e.setAttribute("class","popbttn");
-    c.appendChild(d);
-    c.appendChild(document.createElement("br"));
-    c.appendChild(document.createElement("div").appendChild(e));
-    document.getElementById('email').value="";
-    document.getElementById('password').value="";
-    document.getElementById('popo').style.display = "block";
-    document.getElementById("popbttn").addEventListener("click", function(event){
-      event.preventDefault();
-      document.getElementById('popo').style.display='none'
-    });
+//  if((document.getElementById('email').value.match(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
+// &&document.getElementById('password').value.length>=4))
+//  {
+  //  c.innerHTML="";
+  //  var d=document.createTextNode("Hi!! "+ document.getElementById('email').value);
+  //  var e = document.createElement("button");
+//    e.appendChild(document.createTextNode("OK"));
+  //  e.setAttribute("id","popbttn");
+//    e.setAttribute("class","popbttn");
+//    c.appendChild(d);
+//    c.appendChild(document.createElement("br"));
+//    c.appendChild(document.createElement("div").appendChild(e));
+//  document.getElementById('email').value="";
+//    document.getElementById('password').value="";
+//    document.getElementById('popo').style.display = "block";
+//    document.getElementById("popbttn").addEventListener("click", function(event){
+//      event.preventDefault();
+//      document.getElementById('popo').style.display='none'
+//    });
+sessionStorage.setItem('ok',document.getElementById('email').value);
+  location.href="./success1.html";
+
+
   }
   else {
     document.getElementById('email').value="";
